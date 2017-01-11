@@ -43,4 +43,4 @@ fighting against each other and the object of the game is to get the other playe
 <p>My inspirationation for this game came from a time when I was playing a game similar to this game. It worked similarily to this game, and as soon as I played it I wanted to be able to make something like that. </p>
 
 <h2>Screenshot<h2>
-<img src = "http://imgur.com/sWG2ZTU">
+<img src = "http://i.imgur.com/sWG2ZTU.jpg">
