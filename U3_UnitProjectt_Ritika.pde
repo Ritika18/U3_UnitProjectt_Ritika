@@ -11,12 +11,14 @@ Box2DProcessing box2d;
 
 //Objects
 Player p1;
+Player p2;
 Platform platform1;
 Platform platform2;
 Platform platform3;
 
 //Images
 PImage bluePlayer;
+PImage purplePlayer;
 PImage icePlatformImg;
 
 void setup()
@@ -29,9 +31,13 @@ void setup()
   
   bluePlayer = loadImage("a.png");
   bluePlayer.resize(100,150);
+  purplePlayer = loadImage("b.png");
+  purplePlayer.resize(100,150);
+
   icePlatformImg = loadImage("ice_platform.png");
   
-  p1 = new Player(width/2, 0, bluePlayer, true);
+  p1 = new Player(width/2-50, 0, bluePlayer, true);
+  p2 = new Player(width/2+50, 0, purplePlayer, true);
   
   int w = icePlatformImg.width;
  
@@ -46,7 +52,8 @@ void draw()
   
   box2d.step();
   
-  p1.Update();
+  p1.Update1();
+  p2.Update2();
   
   platform1.Draw();
   platform2.Draw();

@@ -5,6 +5,9 @@ class Player extends Entity
   private boolean _keyJump;
   private PVector _moveSpeed;
   private int     _jumpStrength;
+  private boolean _keyLeft2;
+  private boolean _keyRight2;
+  private boolean _keyJump2;
   
   Player(float x, float y, PImage img, boolean isActive)
   {
@@ -15,13 +18,13 @@ class Player extends Entity
     _jumpStrength = 1000;
   }
   
-  public void Update()
+  public void Update1()
   {
-    KeyInputs();
-    HandleMovement();
+    KeyInputs1();
+    HandleMovement1();
   }
   
-  private void KeyInputs()
+  private void KeyInputs1()
   {
     if (keyPressed)
     {
@@ -46,7 +49,7 @@ class Player extends Entity
     }
   }
   
-  private void HandleMovement()
+  private void HandleMovement1()
   {
     Vec2 currentVelocity = super._body.getLinearVelocity();
     
@@ -77,6 +80,78 @@ class Player extends Entity
     {
        _moveSpeed.y = _jumpStrength;
        super._body.applyLinearImpulse( new Vec2(0, _jumpStrength), super.GetWorldCenter(), false);
+    }
+  }
+    
+  public void Update2()
+  {
+    KeyInputs2();
+    HandleMovement2();
+  }
+
+  private void KeyInputs2()
+  {
+    if (keyPressed)
+    {
+      if (key == 'l')
+      {
+        _keyRight2 = true;
+      }
+      if (key == 'j')
+      {
+        _keyLeft2 = true;
+      }
+      if (key == 'i')
+      {
+        _keyJump2 = true;
+      }
+    } 
+    
+    else
+    {
+      _keyLeft2  = false;
+      _keyRight2 = false;
+      _keyJump2  = false;
+    }
+  }
+  
+  private void HandleMovement2()
+  {
+    //
+    //For more info on Moving bodies: http://www.iforce2d.net/b2dtut/forces
+    //
+
+    Vec2 currentVelocity = super._body.getLinearVelocity();
+
+
+    //edit the current velocity based on what we're doing
+    if (_keyRight2)
+    {
+      currentVelocity.x = 5 * _moveSpeed.x;
+    } 
+    
+    else if (_keyLeft2)
+    {
+      currentVelocity.x = -5 * _moveSpeed.x;
+    } 
+    
+    else
+    {
+      currentVelocity.x = 0;
+    }
+    super._body.setLinearVelocity(currentVelocity);
+
+    //
+    // THIS IS AN AWFUL WAY OF DOING JUMP
+    // PLEASE NOTE THIS DOWN AND DO NOT USE IT IN YOUR FINAL CODE!
+    // Jump should be based on when you "hit the ground" NOT BY USING
+    // VELOCITY!
+    //
+
+    if (_keyJump2 && currentVelocity.y < 1 && currentVelocity.y > -1)
+    {
+      _moveSpeed.y = _jumpStrength;
+      super._body.applyLinearImpulse( new Vec2(0, _jumpStrength), super.GetWorldCenter(), false);
     }
   }
 }
