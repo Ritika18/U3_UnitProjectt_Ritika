@@ -9,6 +9,16 @@ int b;
 
 Box2DProcessing box2d;
 
+//Objects
+Player p1;
+Platform platform1;
+Platform platform2;
+Platform platform3;
+
+//Images
+PImage bluePlayer;
+PImage icePlatformImg;
+
 void setup()
 {
   fullScreen(P3D);
@@ -17,7 +27,17 @@ void setup()
   box2d.setGravity(0, -100);
   box2d.setContinuousPhysics(true);
   
-
+  bluePlayer = loadImage("a.png");
+  bluePlayer.resize(100,150);
+  icePlatformImg = loadImage("ice_platform.png");
+  
+  p1 = new Player(width/2, 0, bluePlayer, true);
+  
+  int w = icePlatformImg.width;
+ 
+  platform1 = new Platform(width/2, height-150, icePlatformImg, true);
+  platform2 = new Platform(width/3, height-150, icePlatformImg, true);
+  platform3 = new Platform(width/3+w+60, height-150, icePlatformImg, true);
 }
 
 void draw()
@@ -25,4 +45,10 @@ void draw()
   background(r, g, b);
   
   box2d.step();
+  
+  p1.Update();
+  
+  platform1.Draw();
+  platform2.Draw();
+  platform3.Draw();
 }
