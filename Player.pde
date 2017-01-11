@@ -8,10 +8,12 @@ class Player extends Entity
   private boolean _keyLeft2;
   private boolean _keyRight2;
   private boolean _keyJump2;
+  private int Score1 = 0;
+  private int Score2 = 0;
   
-  Player(float x, float y, PImage img, boolean isActive)
+  Player(float x, float y, PImage img)
   {
-    super(x, y, img, "Player", isActive);
+    super(x, y, img, "Player");
     super.CreateBody(BodyType.DYNAMIC);
     _moveSpeed = new PVector(50,0);
     
@@ -80,6 +82,45 @@ class Player extends Entity
     {
        _moveSpeed.y = _jumpStrength;
        super._body.applyLinearImpulse( new Vec2(0, _jumpStrength), super.GetWorldCenter(), false);
+    }
+  }
+  
+  public void score1()
+  {
+    fill(255);
+    rect(15,15,100,35);
+    fill(0);
+    textSize(32);
+    text(Score1,40,45);
+    
+    Vec2 pos = box2d.getBodyPixelCoord(super._body);
+
+    if(pos.y > height)
+    {
+      Score1 = 1;
+      isActive = false;
+      r = 0;
+      g = 0;
+      b = 0;
+    }
+    
+    keyReleased();
+
+    if(isActive == true)
+    {
+      r = 50;
+      g = 128;
+      b = 255;
+      pos.y = 0;
+      pos.x = width/2-30;
+    }
+  }
+  
+  private void keyReleased()
+  {
+    if(key == 'r')
+    {
+      isActive = true;
     }
   }
     
@@ -152,6 +193,37 @@ class Player extends Entity
     {
       _moveSpeed.y = _jumpStrength;
       super._body.applyLinearImpulse( new Vec2(0, _jumpStrength), super.GetWorldCenter(), false);
+    }
+  }
+  
+  public void score2()
+  {
+    fill(255);
+    rect(width-115,15,100,35);
+    fill(0);
+    textSize(32);
+    text(Score2,width-100,45);
+    
+    Vec2 pos = box2d.getBodyPixelCoord(super._body);
+
+    if(pos.y > height)
+    {
+      Score2 = 1;
+      isActive = false;
+      r = 0;
+      g = 0;
+      b = 0;
+    }
+    
+    keyReleased();
+    
+    if(isActive == true)
+    {
+      r = 50;
+      g = 128;
+      b = 255;
+      pos.y = 0;
+      pos.x = width/2+30;
     }
   }
 }

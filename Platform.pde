@@ -1,9 +1,9 @@
 class Platform extends Entity
 {
   
-  Platform(float x, float y, PImage img, boolean isActive)
+  Platform(float x, float y, PImage img)
   {
-    super(x, y, img, "Platform", isActive);
+    super(x, y, img, "Platform");
     super.CreateBody(BodyType.STATIC);
   }
 }

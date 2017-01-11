@@ -4,7 +4,6 @@ class Entity
   private float _y;
   private PImage _img;
   private String _type;
-  private boolean _isActive;
   private Body _body;
   
   Entity()
@@ -12,17 +11,15 @@ class Entity
     _x = 0;
     _y = 0;
     _img  = null;
-    _isActive = false;
     _type = "Unknown Entity"; 
   }
   
-  Entity(float x, float y, PImage img, String type, boolean isActive)  
+  Entity(float x, float y, PImage img, String type)  
   {
     _x = x;
     _y = y;
     _img  = img;
     _type = type;
-    _isActive = isActive;
   }
   
   private void CreateBody(BodyType bType)
@@ -80,8 +77,8 @@ class Entity
     //This object can now be safely deleted from an ArrayList
   }
 
-  boolean GetActive() { return _isActive; }
-  void    SetActive(boolean state) { _isActive = state; }
+  boolean GetActive() { return isActive; }
+  void    SetActive(boolean state) { isActive = state; }
   
   Vec2    GetPosition()    { return box2d.getBodyPixelCoord(_body); }
   Vec2    GetWorldCenter() { return _body.getWorldCenter(); } 
