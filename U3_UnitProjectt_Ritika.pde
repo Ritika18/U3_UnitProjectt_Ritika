@@ -18,8 +18,8 @@ Platform platform2;
 Platform platform3;
 
 //Images
-PImage bluePlayer;
-PImage purplePlayer;
+PImage blackPlayer;
+PImage whitePlayer;
 PImage icePlatformImg;
 
 void setup()
@@ -32,15 +32,15 @@ void setup()
   box2d.setGravity(0, -100);
   box2d.setContinuousPhysics(true);
   
-  bluePlayer = loadImage("a.png");
-  //bluePlayer.resize(100,150);
-  purplePlayer = loadImage("b.png");
-  //purplePlayer.resize(100,150);
+  blackPlayer = loadImage("a.png");
+  blackPlayer.resize(100,150);
+  whitePlayer = loadImage("b.png");
+  whitePlayer.resize(100,150);
 
   icePlatformImg = loadImage("ice_platform.png");
   
-  p1 = new Player(width/2-50, 0, bluePlayer);
-  p2 = new Player(width/2+50, 0, purplePlayer);
+  p1 = new Player(width/2-50, 0, blackPlayer);
+  p2 = new Player(width/2+50, 0, whitePlayer);
   
   int w = icePlatformImg.width;
  

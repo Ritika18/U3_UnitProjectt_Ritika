@@ -121,6 +121,14 @@ class Player extends Entity
     if(key == 'r')
     {
       isActive = true;
+            
+      float a = super._body.getAngle();
+      Body b = super._body;
+     
+      BodyDef bd = new BodyDef();
+      
+      Vec2 newPos = bd.position.set(box2d.coordPixelsToWorld(width/2-30,0));
+      b.setTransform(newPos,-a);
     }
   }
     
@@ -215,7 +223,7 @@ class Player extends Entity
       b = 0;
     }
     
-    keyReleased();
+    keyReleased2();
     
     if(isActive == true)
     {
@@ -224,6 +232,22 @@ class Player extends Entity
       b = 255;
       pos.y = 0;
       pos.x = width/2+30;
+    }
+  } 
+  
+  private void keyReleased2()
+  {
+    if(key == 'r')
+    {
+      isActive = true;
+      
+      float a = super._body.getAngle();
+      Body b = super._body;
+     
+      BodyDef bd = new BodyDef();
+      
+      Vec2 newPos = bd.position.set(box2d.coordPixelsToWorld(width/2+30,0));
+      b.setTransform(newPos,-a);
     }
   }
 }
