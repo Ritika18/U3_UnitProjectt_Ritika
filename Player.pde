@@ -78,10 +78,10 @@ class Player extends Entity
     // VELOCITY!
     //
     
-    if (_keyJump && currentVelocity.y < 1 && currentVelocity.y > -1)
+    if (_keyJump == true)
     {
-       _moveSpeed.y = _jumpStrength;
-       super._body.applyLinearImpulse( new Vec2(0, _jumpStrength), super.GetWorldCenter(), false);
+      currentVelocity.y = 10;
+      super._body.setLinearVelocity(currentVelocity);
     }
   }
   
@@ -95,7 +95,7 @@ class Player extends Entity
     
     Vec2 pos = box2d.getBodyPixelCoord(super._body);
 
-    if(pos.y > height)
+    if(pos.y > height-230)
     {
       Score1 = 1;
       isActive = false;
@@ -197,10 +197,10 @@ class Player extends Entity
     // VELOCITY!
     //
 
-    if (_keyJump2 && currentVelocity.y < 1 && currentVelocity.y > -1)
+    if (_keyJump2 == true)
     {
-      _moveSpeed.y = _jumpStrength;
-      super._body.applyLinearImpulse( new Vec2(0, _jumpStrength), super.GetWorldCenter(), false);
+      currentVelocity.y = 10;
+      super._body.setLinearVelocity(currentVelocity);
     }
   }
   
@@ -214,19 +214,22 @@ class Player extends Entity
     
     Vec2 pos = box2d.getBodyPixelCoord(super._body);
 
-    if(pos.y > height)
+    if(pos.y > height-230)
     {
       Score2 = 1;
       isActive = false;
-      r = 0;
-      g = 0;
-      b = 0;
+      
+      colorMode(RGB);
+      r = 255;
+      g = 255;
+      b = 255;
     }
     
     keyReleased2();
     
     if(isActive == true)
     {
+      colorMode(HSB);
       r = 50;
       g = 128;
       b = 255;

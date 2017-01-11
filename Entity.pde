@@ -41,8 +41,8 @@ class Entity
     FixtureDef fd = new FixtureDef();
     fd.shape = sd;
     fd.density = 10; //just density
-    fd.friction = 0.1; //spinny
-    fd.restitution = 0.3; //bouncy
+    fd.friction = 0.5; //spinny
+    fd.restitution = 0.8; //bouncy
 
     //Define the body and make it from the shape
     BodyDef bd = new BodyDef();
