@@ -6,7 +6,6 @@ import org.jbox2d.dynamics.*;
 int r;
 int g;
 int b;
-boolean isActive = true;
 
 Box2DProcessing box2d;
 

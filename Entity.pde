@@ -4,6 +4,7 @@ class Entity
   private float _y;
   private PImage _img;
   private String _type;
+  private boolean _isActive;
   private Body _body;
   
   Entity()
@@ -11,15 +12,17 @@ class Entity
     _x = 0;
     _y = 0;
     _img  = null;
+    _isActive = false;
     _type = "Unknown Entity"; 
   }
   
-  Entity(float x, float y, PImage img, String type)
+  Entity(float x, float y, PImage img, String type, boolean isActive)  
   {
     _x = x;
     _y = y;
     _img  = img;
     _type = type;
+    _isActive = isActive;
   }
   
   private void CreateBody(BodyType bType)
@@ -40,9 +43,9 @@ class Entity
     //Fixture, which are used for the size, shape and material properties of the object
     FixtureDef fd = new FixtureDef();
     fd.shape = sd;
-    fd.density = 1; //just density
-    fd.friction = 0.6; //spinny
-    fd.restitution = 1; //bouncy
+    fd.density = 10; //just density
+    fd.friction = 0.1; //spinny
+    fd.restitution = 0.3; //bouncy
 
     //Define the body and make it from the shape
     BodyDef bd = new BodyDef();
@@ -77,8 +80,8 @@ class Entity
     //This object can now be safely deleted from an ArrayList
   }
 
-  boolean GetActive() { return isActive; }
-  void    SetActive(boolean state) { isActive = state; }
+  boolean GetActive() { return _isActive; }
+  void    SetActive(boolean state) { _isActive = state; }
   
   Vec2    GetPosition()    { return box2d.getBodyPixelCoord(_body); }
   Vec2    GetWorldCenter() { return _body.getWorldCenter(); } 
